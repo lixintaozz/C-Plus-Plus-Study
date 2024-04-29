@@ -17,8 +17,8 @@ int main(){
     //ostringstream  oss("Ito En Green Tea", stringstream::ate);
 
 
-    //oss.seekp方法？
-
+    //oss.seekp(0L, ios::end);     等价于   ostringstream  oss("Ito En Green Tea", stringstream::ate);
+    //seekp和seekg都是用于操作文件读写位置的方法，第一个参数为偏移量（可以为负），第二个参数指定起始位置
     cout << oss.str() << endl;
 
     oss << 16.9 << " Ounce";
