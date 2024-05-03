@@ -5,10 +5,12 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <iterator>
+#include <algorithm>
 
-using namespace std;
 
 int main(){
+    using std::vector;
     vector<int> vec;
     vec.push_back(1);
     vec.push_back(2);
@@ -16,6 +18,7 @@ int main(){
     cout << vec[15] << endl;
     //使用at()方法访问vector元素时，会检查下标访问是否越界，如果越界，编译器会报错
     cout << vec.at(15) << endl;*/
+
     return 0;
 }
 
