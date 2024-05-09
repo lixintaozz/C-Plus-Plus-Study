@@ -24,9 +24,9 @@ int main(){
 
 /*
  * 几种创建std::pair<string, int>的方式
- * - std::pair<string, int> p{"Phone number", 6532565};  //uniform initialization
+ * - std::pair<string, int> p{"Phone number", 6532565};  //uniform initialization 不仅可用于初始化结构体，基本上可用于初始化一切类型
  * - std::make_pair("Phone number", 6532565);
- * - {"Phone number", 6532565};
+ * - {"Phone number", 6532565}; //结构体本身的定义
  * */
 
 /*

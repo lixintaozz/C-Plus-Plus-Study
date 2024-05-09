@@ -7,26 +7,27 @@
  * write_courses_not_offered
  */
 
-// (FIRST) STUDENT TODO: change how variables are passed into the functions you
-// must complete
 
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <tuple>
 #include <vector>
+#include <algorithm>
 
-// STUDENT TODO: add paths
-std::string COURSES_OFFERED_CSV_PATH = "<ENTER PATH HERE>";
+// STUDENT
+std::string COURSES_OFFERED_CSV_PATH = "student_output/courses_offered.csv";
 
-std::string COURSES_NOT_OFFERED_CSV_PATH = "<ENTER PATH HERE>";
+std::string COURSES_NOT_OFFERED_CSV_PATH = "student_output/courses_not_offered.csv";
 
 struct Course {
-  /* STUDENT TODO: ADD TYPE */ title;
-  /* STUDENT TODO: ADD TYPE */ number_of_units;
-  /* STUDENT TODO: ADD TYPE */ quarter;
+    //?
+  std::string title;
+  std::string number_of_units;
+  std::string quarter;
 
   // ignore this!
+  //函数后加const是什么用法?
   bool operator==(const Course &other) const {
     return title == other.title && number_of_units == other.number_of_units &&
            quarter == other.quarter;
@@ -46,8 +47,21 @@ std::vector<std::string> split(std::string s, char delim);
  * 1) Take a look at the split function we provide
  * 2) Each LINE is a record! *this is important, so we're saying it again :>)*
  */
-void parse_csv(std::string filename, std::vector<Course> vector_of_courses) {
-  // STUDENT TODO: Implement this function
+void parse_csv(std::string filename, std::vector<Course>& vector_of_courses) {//必须按引用传递vector_of_courses?
+  std::ifstream ifs(filename, std::ios::in);
+  if (!ifs.is_open()) {
+      std::cout << "Opps, open csv file fails!" << std::endl;
+      exit(1);
+  }
+  while (!ifs.eof()){
+      std::string line;
+      if (getline(ifs, line)){
+          auto vec = split(line, ',');
+          Course course{vec.at(0), vec.at(1), vec.at(2)};
+          vector_of_courses.push_back(course);
+      }
+  }
+  std::cout << "Read in csv file successfully!" << std::endl;
 }
 
 /*
@@ -62,7 +76,7 @@ void parse_csv(std::string filename, std::vector<Course> vector_of_courses) {
  * 1) Keep track of the classes that you need to delete!
  * 2) Use the delete_elem_from_vector function we give you!
  */
-void write_courses_offered(std::vector<Course> vector_of_courses) {
+void write_courses_offered(std::vector<Course>& vector_of_courses) {
   // STUDENT TODO: implement this function
 }
 
@@ -77,7 +91,7 @@ void write_courses_offered(std::vector<Course> vector_of_courses) {
  *
  * HINT: This should be VERY similar to write_courses_offered
  */
-void write_courses_not_offered(std::vector<Course> vector_of_courses) {
+void write_courses_not_offered(std::vector<Course>& vector_of_courses) {
   // STUDENT TODO: implement this function
 }
 
