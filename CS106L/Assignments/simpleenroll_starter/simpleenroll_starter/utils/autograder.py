@@ -15,4 +15,5 @@ def main():
   os.remove(r"D:\CPlusPlus\CS106L\Assignments\simpleenroll_starter\simpleenroll_starter\utils\courses_offered.csv")
   print("Congratulations, your code passes all the autograder tests! ✅")
 
-main()
+if __name__ == '__main__':
+  main()
