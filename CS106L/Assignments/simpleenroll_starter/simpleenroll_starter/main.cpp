@@ -9,6 +9,10 @@
 #include <system_error>
 #include <vector>
 
+/*
+ * 原始字符串字面值：R"(字符串)" ----不进行任何转义的字符串  tip:windows文件系统的路径为反斜杠
+ * c++会生成exe文件，所以使用相对路径时，相对的路径应该是exe文件所在的路径，而非cpp源文件所在的路径
+ * */
 std::string COURSES_PATH = "courses.csv";
 
 bool structTest() {
@@ -44,6 +48,6 @@ int main() {
   pclose(pipe);
 
   // uncomment this line to debug
-  // print_vector(vector_of_courses);
+   //print_vector(vector_of_courses);
   return 0;
 }

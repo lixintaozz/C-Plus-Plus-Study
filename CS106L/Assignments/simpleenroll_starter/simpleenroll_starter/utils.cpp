@@ -7,7 +7,6 @@
  * write_courses_not_offered
  */
 
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -16,12 +15,12 @@
 #include <algorithm>
 
 // STUDENT
+//路径是正斜杠还是反斜杠都可以，只要当是反斜杠时，注意避免转义就行
 std::string COURSES_OFFERED_CSV_PATH = "student_output/courses_offered.csv";
 
 std::string COURSES_NOT_OFFERED_CSV_PATH = "student_output/courses_not_offered.csv";
 
 struct Course {
-    //?
   std::string title;
   std::string number_of_units;
   std::string quarter;
@@ -47,18 +46,23 @@ std::vector<std::string> split(std::string s, char delim);
  * 1) Take a look at the split function we provide
  * 2) Each LINE is a record! *this is important, so we're saying it again :>)*
  */
-void parse_csv(std::string filename, std::vector<Course>& vector_of_courses) {//必须按引用传递vector_of_courses?
+void parse_csv(const std::string& filename, std::vector<Course>& vector_of_courses){
   std::ifstream ifs(filename, std::ios::in);
   if (!ifs.is_open()) {
-      std::cout << "Opps, open csv file fails!" << std::endl;
+      std::cout << "Oops, open csv file fails!" << std::endl;
       exit(1);
   }
+
+  //test fail()
   while (!ifs.eof()){
       std::string line;
       if (getline(ifs, line)){
           auto vec = split(line, ',');
-          Course course{vec.at(0), vec.at(1), vec.at(2)};
-          vector_of_courses.push_back(course);
+          //更好的解决方案？？？
+          if (vec.at(0) != "Title") {
+              Course course{vec.at(0), vec.at(1), vec.at(2)};
+              vector_of_courses.push_back(course);
+          }
       }
   }
   std::cout << "Read in csv file successfully!" << std::endl;
@@ -77,7 +81,20 @@ void parse_csv(std::string filename, std::vector<Course>& vector_of_courses) {//
  * 2) Use the delete_elem_from_vector function we give you!
  */
 void write_courses_offered(std::vector<Course>& vector_of_courses) {
-  // STUDENT TODO: implement this function
+  std::ofstream ofs(COURSES_OFFERED_CSV_PATH, std::ios::out);
+  if (!ofs.is_open())
+      std::cout << "Oops, open csv file fails!" << std::endl;
+  else{
+      for(auto& item: vector_of_courses){
+          //调用的构造方法不同而已
+          if (item.quarter != "null"){
+              ofs << item.title << "," << item.number_of_units << "," << item.quarter << std::endl;
+              //删除可能会有问题
+              //delete_elem_from_vector(vector_of_courses, item);
+          }
+      }
+  }
+  ofs.close();
 }
 
 /*
@@ -92,7 +109,17 @@ void write_courses_offered(std::vector<Course>& vector_of_courses) {
  * HINT: This should be VERY similar to write_courses_offered
  */
 void write_courses_not_offered(std::vector<Course>& vector_of_courses) {
-  // STUDENT TODO: implement this function
+  std::ofstream ofs(COURSES_NOT_OFFERED_CSV_PATH, std::ios::out);
+  if (!ofs.is_open())
+      std::cout << "Oops, open csv file fails!" << std::endl;
+  else{
+      for(auto& item: vector_of_courses){
+          //cstring为什么可以直接赋给string？？？
+          if (item.quarter == "null")
+            ofs << item.title << "," << item.number_of_units << "," << item.quarter << std::endl;
+      }
+  }
+  ofs.close();
 }
 
 /* ######## HEYA! DON'T MODIFY ANYTHING BEYOND THIS POINT THX ######## */
