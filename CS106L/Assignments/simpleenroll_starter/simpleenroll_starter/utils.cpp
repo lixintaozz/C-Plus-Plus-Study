@@ -15,7 +15,6 @@
 #include <string>
 
 
-//Todo:Cmake Project   ---CS自学指南
 
 
 /* c风格字符串可以直接赋给string对象，c风格字符串也可以直接与string对象进行比较
@@ -34,10 +33,11 @@
 /*
  * 迭代器遍历中使用erase删除vector中指定的元素后，迭代器会自动指向被删除元素的下一个元素
  * 解决方案：
- * - new vector来存储满足条件的元素
+ * 1.使用vector.erase()方法
+ * - 修改迭代器的更新方式，当删除元素时it = vec.erase(it)，否则 ++it
+ * - 由于从vector删除元素后，vector就不是原来的vector了，因此每当从vector删除元素后，我们就需要重新来遍历新的vector
+ * 2.直接不使用vector.erase()方法
  * - 使用std::erase,std::erase_if(since c++20)
- *
- * 注意：无论是使用迭代器遍历还是范围遍历(auto item:vec)删除vector的元素均会出错
  * */
 
 
@@ -116,9 +116,31 @@ void write_courses_offered(std::vector<Course>& vector_of_courses) {
                   << item.number_of_units << ","
                   << item.quarter << std::endl;
           }
-
       }
+/*      for (auto iter = vector_of_courses.begin(); iter != vector_of_courses.end();){ //迭代器遍历删除vector指定元素
+          if (iter->quarter != "null"){
+              iter = vector_of_courses.erase(iter);
+          }else{
+              ++iter;
+          }
+      }*/
+
       //std::erase_if(vector_of_courses, [](Course & course){return course.quarter != "null";});   c++20用法
+
+/*      while (true){   //范围遍历删除vector中指定元素
+          bool flag = false;
+          for (auto& item: vector_of_courses){
+              if (item.quarter != "null") {
+                  flag = true;
+                  delete_elem_from_vector(vector_of_courses, item);
+                  break;   //每当从vector中删除元素时，就需要重新使用一个for循环来遍历这个新的vector
+              }
+
+          }
+
+          if (!flag)
+              break;
+      }*/
   }
   ofs.close();
 }
