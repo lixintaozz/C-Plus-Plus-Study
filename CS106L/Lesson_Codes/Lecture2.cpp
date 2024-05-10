@@ -35,7 +35,10 @@ int main(){
 /*
  * getline(stream, variable, ch)
  * 作用：从stream的缓冲区中读取字符，将其放入variable，直到遇到ch为止
- * 注意：ch不会被读入variable，会留在缓冲区中
+ * 注意：
+ * - ch不会被读入variable，但是会从缓冲区中清除(针对getline)
+ * - cin会自动跳过新的一行中开头的空白字符
+ *
  * cin.ignore()：忽略一个字符
  * - stream：代表流，可以是输入输出流，也可以是文件流
  * - variable：字符串变量

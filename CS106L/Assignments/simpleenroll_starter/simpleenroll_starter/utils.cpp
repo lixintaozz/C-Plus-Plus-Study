@@ -15,9 +15,31 @@
 #include <string>
 
 
-//Todo: 1.文件读写流的使用
-//      2.cstring和string的区别，使用区别
-//      3.vector删除的坑
+//Todo:Cmake Project   ---CS自学指南
+
+
+/* c风格字符串可以直接赋给string对象，c风格字符串也可以直接与string对象进行比较
+ * */
+
+
+/* 文件读写流 ifstream、ofstream
+ * 读：
+ * - 单个字符：get()方法
+ * - 单行字符：std::getline()函数
+ * 写：
+ * - <<运算符
+ * */
+
+
+/*
+ * 迭代器遍历中使用erase删除vector中指定的元素后，迭代器会自动指向被删除元素的下一个元素
+ * 解决方案：
+ * - new vector来存储满足条件的元素
+ * - 使用std::erase,std::erase_if(since c++20)
+ *
+ * 注意：无论是使用迭代器遍历还是范围遍历(auto item:vec)删除vector的元素均会出错
+ * */
+
 
 // STUDENT
 //路径是正斜杠还是反斜杠都可以，只要当是反斜杠时，注意避免转义就行
@@ -57,7 +79,7 @@ void parse_csv(const std::string& filename, std::vector<Course>& vector_of_cours
   ifs.open(filename);   //将文件流对象与某一文件绑定
   if (!ifs.is_open()) {
       std::cout << "Oops, open csv file fails!" << std::endl;
-      exit(1);
+      exit(EXIT_FAILURE);
   }
   std::string line;
   std::getline(ifs, line);  //跳过第一行
@@ -93,10 +115,10 @@ void write_courses_offered(std::vector<Course>& vector_of_courses) {
               ofs << item.title << ","
                   << item.number_of_units << ","
                   << item.quarter << std::endl;
-              //删除可能会有问题？？？
-              //delete_elem_from_vector(vector_of_courses, item);
           }
+
       }
+      //std::erase_if(vector_of_courses, [](Course & course){return course.quarter != "null";});   c++20用法
   }
   ofs.close();
 }
@@ -119,11 +141,9 @@ void write_courses_not_offered(std::vector<Course>& vector_of_courses) {
       std::cout << "Oops, open csv file fails!" << std::endl;
   else{
       for(auto& item: vector_of_courses){
-          //cstring为什么可以直接赋给string,文件流的参数为什么得是cstring？？？
-          if (item.quarter == "null")
-            ofs << item.title << ","
-                << item.number_of_units << ","
-                << item.quarter << std::endl;
+          ofs << item.title << ","
+              << item.number_of_units << ","
+              << item.quarter << std::endl;
       }
   }
   ofs.close();
