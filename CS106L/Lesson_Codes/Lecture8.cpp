@@ -16,16 +16,11 @@ int main(){
     auto [min, max] = minmax_element(vec.begin() + 3,vec.end(), cmp);
     cout << "min:" << *min << " max:" << *max <<endl;*/
 
-/*Todo:find their usage
+/*Todo:find its usage below
+ *
     auto doub = [](const int& sum, const int& y){return sum + 1;};
     int res = accumulate(vec.begin(), vec.end(), 0, doub);
-    cout << res << endl;
-
-    transform(vec.begin(), vec.end(), vec.begin(),
-              [](int item) { return item + 1; });
-    for (auto item: vec) {
-        cout << item << " ";
-    }*/
+    cout << res << endl;*/
 
 
 
