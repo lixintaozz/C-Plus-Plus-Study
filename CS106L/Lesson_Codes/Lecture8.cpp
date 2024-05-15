@@ -11,16 +11,16 @@
 using namespace std;
 
 int main(){
-    vector<int> vec{1, 2, 3, 7, 6, 9, 2, 4, 8};
+    vector<int> vec{1, 2, 3, 4};
 /*    auto cmp = [](const int& x, const int& y){return x < y;};
     auto [min, max] = minmax_element(vec.begin() + 3,vec.end(), cmp);
     cout << "min:" << *min << " max:" << *max <<endl;*/
 
-/*Todo:find its usage below
- *
-    auto doub = [](const int& sum, const int& y){return sum + 1;};
+//  binary_op的第一个参数为acc，第二个参数为容器内的每个元素，首先将acc初始化为init的值，然后依次对
+//  容器内的每个元素进行binary_op的操作，以此来更新acc的值直至处理完容器内的所有元素
+    auto doub = [](const int& acc, const int& x){return acc + x * x;};
     int res = accumulate(vec.begin(), vec.end(), 0, doub);
-    cout << res << endl;*/
+    cout << res << endl;
 
 
 
@@ -39,15 +39,15 @@ int main(){
 
 /*  copy_if是一个算法函数，通常用于从一个容器中复制满足特定条件的元素到另一个容器中。
     copy_if不会扩容，使用iterator adaptor可以解决这个问题*/
-    vector<int> vec1(4);
-    vector<int> vec2(0);
-    auto dep = [](int& x){return x >= 6;};
-    auto print = [](const vector<int>& v){for (auto item:v) cout << item << " ";};
-    copy_if(vec.begin(), vec.end(), vec1.begin(), dep);
-    copy_if(vec.begin(), vec.end(), back_inserter(vec2), dep);
-    print(vec1);
-    cout << endl;
-    print(vec2);
+//    vector<int> vec1(4);
+//    vector<int> vec2(0);
+//    auto dep = [](int& x){return x >= 6;};
+//    auto print = [](const vector<int>& v){for (auto item:v) cout << item << " ";};
+//    copy_if(vec.begin(), vec.end(), vec1.begin(), dep);
+//    copy_if(vec.begin(), vec.end(), back_inserter(vec2), dep);
+//    print(vec1);
+//    cout << endl;
+//    print(vec2);
 
 /* std::ostream_iterator的构造函数接受两个参数：输出流对象和一个分隔符字符串。
  * 当使用std::ostream_iterator来输出元素时，每次将一个元素放入std::ostream_iterator后，
