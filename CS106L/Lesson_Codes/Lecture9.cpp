@@ -1,6 +1,6 @@
 //
-// Created by Lenovo on 2024/5/13.
-//
+// Created by warrior on 2024/5/13.
+// std::transform的用法
 
 #include <iostream>
 #include <algorithm>

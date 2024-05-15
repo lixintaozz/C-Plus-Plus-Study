@@ -1,5 +1,5 @@
 //
-// Created by Lenovo on 2024/5/7.
+// Created by warrior on 2024/5/7.
 // 函数对象、lambda函数
 
 #include <iostream>

@@ -1,6 +1,6 @@
 //
-// Created by Lenovo on 2024/4/29.
-//
+// Created by warrior on 2024/4/29.
+// getline、try catch、throws的用法
 #include <sstream>
 #include <iostream>
 #include <stdexcept>

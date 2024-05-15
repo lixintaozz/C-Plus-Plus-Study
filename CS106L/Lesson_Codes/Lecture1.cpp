@@ -1,6 +1,6 @@
 //
-// Created by Lenovo on 2024/4/28.
-//字符串流StringStream
+// Created by warrior on 2024/4/28.
+// 字符串流StringStream
 #include<sstream>
 #include<iostream>
 

@@ -1,6 +1,6 @@
 //
-// Created by Lenovo on 2024/4/30.
-//
+// Created by warrior on 2024/4/30.
+// vector[]访问、struct bind的用法
 
 #include <iostream>
 #include <sstream>
