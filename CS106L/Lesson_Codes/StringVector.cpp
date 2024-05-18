@@ -7,7 +7,7 @@ using namespace std;
 
 
 //使用initializer_list定义构造函数
-//在声明成员变量的同时对其进行初始化
+//在声明成员变量的同时对其进行初始化，一般只用在构造函数中
 StringVector::StringVector(const initializer_list<std::string> &init): vec(init) {}
 
 void StringVector::push_back(const std::string &str) {
