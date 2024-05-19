@@ -3,9 +3,35 @@
 // 移动语义
 
 #include <iostream>
+#include <vector>
+
+template <typename T>
+void swap(T& a, T& b){
+    T temp = std::move(a);
+    a = std::move(b);
+    b = std::move(temp);
+}
+
+template <typename T>
+void printVector(const T& container){
+    for (const auto& item: container){
+        std::cout << item << " "; 
+    }
+    std::cout << std::endl;
+}
+
+//Todo:研究jinanpiwang对应的代码
 
 int main(int argc, const char* argv[]){
-
+    std::vector<int> vec1{1, 2, 3};
+    std::vector<int> vec2{4, 5, 6};
+    std::cout << "Before swap: " << std::endl;
+    printVector(vec1);
+    printVector(vec2);
+    swap(vec1, vec2);
+    std::cout << "After swap: " << std::endl;
+    printVector(vec1);
+    printVector(vec2);
     return 0;
 }
 
@@ -15,7 +41,7 @@ int main(int argc, const char* argv[]){
  * - 右值：右值是没有名字的，它是一个临时值，并且不能通过取地址符&来获取它的地址
  * */
 
-/* Todo:新加的两种特殊函数：？？？？？？   以及实现一个swap函数
+/* 新加的两种特殊函数(用于处理实参为右值的情况)：
  * - 移动构造函数
  * - 移动赋值函数
  * std::move()   //将一个左值声明为右值
