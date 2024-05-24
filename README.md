@@ -5,4 +5,4 @@
 
 And **CS106L** director contains some files about CS106L this class, including lesson codes and of course, 
 
-assignments. The registry will keep updating!😸
+assignments. This repository will keep updating!😸
