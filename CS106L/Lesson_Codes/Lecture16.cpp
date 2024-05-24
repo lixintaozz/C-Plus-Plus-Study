@@ -18,10 +18,10 @@ struct person{
 //Todo:研究std::lock_guard<>的用法，以及weak_ptr<>可能的在多线程中的用法
 int main(int argc, const char* argv[]){
     // 独占拥有权，一个对象只能由一个 unique_ptr 拥有。
-    //unique_ptr<person> p1(new person);
+    //unique_ptr<person> p1 = make_unique<person>();
 
     //共享拥有权，多个 shared_ptr可以同时拥有相同的对象，当没有指针指向对象时，对象才会析构
-    shared_ptr<person> p1(new person);
+    shared_ptr<person> p1 = make_shared<person>();
     p1->name = "Li Hua";
     p1->age = 18;
     cout << p1->name << " " << p1->age << endl;
@@ -40,6 +40,7 @@ int main(int argc, const char* argv[]){
 
 /* RAII:
  * 总是使用构造函数来获取资源，使用析构函数来释放资源（目的是为了避免内存泄露）
+ * 核心思想：通过一个包装类来获取以及释放资源。比如智能指针是专门用来处理关于内存分配的类，lock_guard是专门用来处理"锁"的类
  *
  * 智能指针：本质上就是实现一个类，使用它的构造函数来获取资源，使用它的析构函数来释放资源
  * 三种智能指针：
