@@ -82,7 +82,7 @@ void parse_csv(const std::string& filename, std::vector<Course>& vector_of_cours
       exit(EXIT_FAILURE);
   }
   std::string line;
-  std::getline(ifs, line);  //跳过第一行
+  std::getline(ifs, line);  //跳过第一行！
   while (std::getline(ifs, line)){
       auto vec = split(line, ',');
       Course course{vec.at(0), vec.at(1), vec.at(2)};

@@ -13,8 +13,20 @@ Submit to Paperless by 11:59pm on 2/1/2024.
 #include <set>
 #include <fstream>
 #include <vector>
+#include <sstream>
 
-const std::string path = R"(D:\CPlusPlus\CS106L\Assignments\marriagepact_starter\students.txt)";
+const std::string path = "students.txt";
+
+//使用std::getline()来实现split函数，返回值为std::vector
+std::vector<std::string> split(const std::string& str, std::vector<std::string>& sv){
+    std::stringstream ss(str);
+    std::string s;
+    while (std::getline(ss, s, ' ')){
+        sv.push_back(s);
+    }
+    return sv;
+}
+
 
 std::set<std::string> get_applicants(const std::string& filename) {
 
@@ -37,8 +49,15 @@ std::queue<std::string*> find_matches(std::set<std::string> &students) {
     //假设名字叫Stephen Curry
     std::queue<std::string *> queue;
     for (auto &item: students) {
-        size_t pos = item.find(" ") + 1;
-        bool flag = item[0] == 'S' && item[pos] == 'C';
+/*         size_t pos = item.find(" ") + 1;
+        bool flag = item[0] == 'S' && item[pos] == 'C'; */
+        
+        //使用自己定义的split函数来实现
+        std::vector<std::string> sv;
+        sv.reserve(2);
+        split(item, sv);
+        bool flag = sv[0][0] == 'S' && sv[1][0] == 'C';
+
         if (flag) {
             // 在C++中，std::set 内部存储的元素默认为const
             // 在编译器层面，这意味着如果您尝试获取 std::set 中一个元素的指针，

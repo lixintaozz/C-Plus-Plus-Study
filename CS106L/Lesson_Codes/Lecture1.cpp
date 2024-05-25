@@ -25,7 +25,7 @@ int main(){
     cout << oss.str() << endl;
 
 
-    //oss不能直接输出，是因为ostringstream将数据以字符串的形式存储在内存中，而不是直接输出到屏幕或文件
+    //oss不能直接输出，是因为ostringstream将数据以字符串的形式存储在 内存 中，而不是直接输出到 屏幕或文件 
     oss << "(Pack of " << 12 << ")";
     cout << oss.str() << endl;
     return 0;
