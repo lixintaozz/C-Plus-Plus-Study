@@ -32,7 +32,7 @@ int main(){
  * */
 
 
-/*
+/* Todo:getline()的用法需要时时复习，很容易遗忘
  * getline(stream, variable, ch)
  * 作用：从stream的缓冲区中读取字符，将其放入variable，直到遇到ch为止
  * 注意：
