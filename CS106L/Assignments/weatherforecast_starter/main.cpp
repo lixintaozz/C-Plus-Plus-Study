@@ -15,10 +15,10 @@ Submit to Paperless by 11:59pm on 2/16/2024.
 #include <algorithm>
 #include <numeric>
 
-// Todo：深入研究concept的用法
 // 定义自己的concept：既可以使用std的concept来定义显示接口，也可使用requires来定义更加复杂的隐式接口
 template <typename T>
-concept numeric = std::integral<T> || std::floating_point<T>;
+//concept numeric = std::integral<T> || std::floating_point<T>;
+concept numeric = std::is_arithmetic_v<T>;
 
  //使用requires来定义
 /* template <typename T>
@@ -58,9 +58,15 @@ int main() {
     }
 
 
-    // TODO: Convert temperatures to Celsius and output to output.txt
+    // Convert temperatures to Celsius and output to output.txt
+    //一个条款：使用std::transform的时候，要么选用自身作为输出容器，这时应传入.begin()方法；要么使用一个
+    //新的容器做作为输出容器，这时应传入std::back_inserter()。
+    //在这里我们之所以选择使用新容器作为输出参数的原因是因为输出必须存储在std::vector<double>中，而原容器为
+    //std::vector<int>。
     std::vector<double> res0;
+    res0.reserve(5);
     for (const auto& item: readings){
+        //这里使用了std::transform()来一次处理容器中的所有元素，而没有嵌套使用for循环
         std::transform(item.begin(), item.end(), std::back_inserter(res0), convert_f_to_c<int>);
         for (const auto& num: res0){
             ofs << num << " ";
@@ -69,27 +75,34 @@ int main() {
         res0.clear();
     }
 
+    ofs << std::endl;
 
-    // TODO: Find the maximum temperature for each day and output to output.txt
-    auto max = [](const std::vector<int>& x){return static_cast<double > (*std::max_element(x.begin(), x.end()));};
+    // Find the maximum temperature for each day and output to output.txt
+    auto max = [](const std::vector<int>& x){return static_cast<double >
+                                             (*std::max_element(x.begin(), x.end()));};
     std::vector<double> res1 = get_forecast(readings, max);
     for (const auto& n: res1){
         ofs << n << " ";
     }
     ofs << std::endl;
-    // TODO: Find the minimum temperature for each day and output to output.txt
-    auto min = [](const std::vector<int>& x){return static_cast<double > (*std::min_element(x.begin(), x.end()));};
+    ofs << std::endl;
+
+    // Find the minimum temperature for each day and output to output.txt
+    auto min = [](const std::vector<int>& x){return static_cast<double >
+                                             (*std::min_element(x.begin(), x.end()));};
     std::vector<double> res2 = get_forecast(readings, min);
     for (const auto& n: res2){
         ofs << n << " ";
     }
     ofs << std::endl;
-    // TODO: Find the average temperature for each day and output to output.txt
-    auto aver = [](const std::vector<int>& x){return std::accumulate(x.begin(), x.end(), 0) / static_cast<double>(x.size());};
+    ofs << std::endl;
+
+    // Find the average temperature for each day and output to output.txt
+    auto aver = [](const std::vector<int>& x){return std::accumulate(x.begin(), x.end(), 0)
+                                              / static_cast<double>(x.size());};
     std::vector<double> res3 = get_forecast(readings, aver);
     for (const auto& n: res3){
         ofs << n << " ";
     }
-    ofs << std::endl;
     return 0;
 }
