@@ -125,7 +125,7 @@ void write_courses_offered(std::vector<Course>& vector_of_courses) {
           }
       }*/
 
-      //std::erase_if(vector_of_courses, [](Course & course){return course.quarter != "null";});   c++20用法
+      std::erase_if(vector_of_courses, [](Course & course){return course.quarter != "null";});   //c++20用法
 
 /*      while (true){   //范围遍历删除vector中指定元素
           bool flag = false;

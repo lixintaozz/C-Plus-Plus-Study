@@ -38,8 +38,8 @@ int main(int argc, const char* argv[]) {
 
   write_courses_not_offered(vector_of_courses);
 
-
-  FILE *pipe = popen("python3 utils/autograder.py", "r");
+  //指定使用venv中的python.exe，而不是系统默认的python.exe
+  FILE *pipe = popen(R"(D:\CPlusPlus\CS106L\venv\Scripts\python utils\autograder.py)", "r");
   if (!pipe)
     return -1;
 
