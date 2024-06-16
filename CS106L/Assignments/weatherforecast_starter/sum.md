@@ -24,4 +24,7 @@ concept convertible_to =
 使用std::transform的时候，要么选用自身作为输出容器，这时应传入.begin()方法；要么使用一个
 新的容器做作为输出容器，这时应传入std::back_inserter()。
 
-3. 按指定格式输出的语法
+3. 指定浮点数保留n位小数输出
+
+先使用std::fixed，然后使用std::setprecision(n)
+
