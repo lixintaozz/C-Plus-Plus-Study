@@ -16,7 +16,7 @@
 
 #### 由于系统中可能存在多个gcc版本，正常情况下参考以下链接来切换版本
 
-参考这篇博客[Ubuntu下gcc/g++多版本共存和版本切换及使用c++11标准的方法_ubuntu c++11 安装-CSDN博客](https://blog.csdn.net/yoyofu007/article/details/102934990?spm=1001.2014.3001.5506)
+参考这篇博客https://blog.csdn.net/m0_51661400/article/details/134872446
 
 
 
