@@ -22,7 +22,7 @@
 
 
 
-#### 另外一种情况如下
+#### 修改系统的.so动态库文件的搜索路径
 
 ![图片](D:\CPlusPlus\Cpp Notes\Images\pp.png) 
 
