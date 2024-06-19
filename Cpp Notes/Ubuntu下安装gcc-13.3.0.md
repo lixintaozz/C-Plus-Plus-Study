@@ -19,7 +19,7 @@
 参考这篇博客https://blog.csdn.net/m0_51661400/article/details/134872446
 
 这里我测试了博客中的第二种方法：
-将gcc-13.3.0的可执行文件的路径添加到PATH中
+将gcc-13.3.0的可执行文件（一般是：/usr/local/bin）的路径添加到PATH中
 
 
 
