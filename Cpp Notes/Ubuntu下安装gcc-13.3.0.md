@@ -28,3 +28,5 @@
 
 则参考这篇博客[添加lib库自动搜索路径到/etc/ld.so.conf,然后ldconfig使设置生效_libopen-rte.so ldconfig-CSDN博客](https://blog.csdn.net/xpy123/article/details/45039213)。
 
+注意：这篇博客的修改ld.so.conf的方式有问题，不需要在路径前面加include，直接把路径加进去就行
+
